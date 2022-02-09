@@ -53,15 +53,16 @@
       </div>
       <br />
       <div class="info">
-          <div v-for="(data, index) in filteredStop" :key="index" class="container">
-            <div class="stop">{{data.sna.replace("YouBike2.0_", "")}}</div><br>
-            <div class="stopArea">{{data.sarea}}</div><br>
-            <div class="stopAddr">{{data.ar}}</div>
-            <div class="nowData">
-              <div class="total">總車輛數：{{data.tot}}</div>
-              <div class="left">空置車輛：{{data.sbi}}</div>
-            </div>
+        <div class="alert" v-if="this.start==false&&filteredStop==''">很抱歉，您目前的搜尋沒有結果</div>
+        <div v-for="(data, index) in filteredStop" :key="index" class="container">
+          <div class="stop">{{data.sna.replace("YouBike2.0_", "")}}</div><br>
+          <div class="stopArea">{{data.sarea}}</div><br>
+          <div class="stopAddr">{{data.ar}}</div>
+          <div class="nowData">
+            <div class="total">總車輛數：{{data.tot}}</div>
+            <div class="left">空置車輛：{{data.sbi}}</div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -76,6 +77,7 @@ export default {
     return {
       nowVal: "區域",
       youbikeData: [],
+      start: true,
     };
   },
   methods: {
@@ -92,6 +94,7 @@ export default {
           console.log(res);
           this.youbikeData = res.data;
         });
+      this.start = false
     },
   },
   computed: {
