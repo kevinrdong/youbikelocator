@@ -54,7 +54,7 @@
       <br />
       <div class="info">
         <div class="alert" v-if="this.start==false&&filteredStop==''">很抱歉，您目前的搜尋沒有結果</div>
-        <div v-for="(data, index) in filteredStop" :key="index" class="container">
+        <div v-for="(data, index) in filteredStop" :key="index" class="container" v-on:click="toMap(data.ar)">
           <div class="stop">{{data.sna.replace("YouBike2.0_", "")}}</div><br>
           <div class="stopArea">{{data.sarea}}</div><br>
           <div class="stopAddr">{{data.ar}}</div>
@@ -81,7 +81,7 @@ export default {
     };
   },
   methods: {
-    clearVal: function () {
+    clearVal() {
       this.nowVal = "";
       this.nowValB = "";
     },
@@ -96,6 +96,10 @@ export default {
         });
       this.start = false
     },
+    toMap(address) {
+      // const arr = this.data.ar
+      window.open(`https://www.google.com/maps/?q=${address}`)
+    }
   },
   computed: {
     filteredStop() {
