@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <div class="header"></div>
+    <div class="header">
+      <div class="headerT">YouBike2.0 Map</div>
+      <div class="headerW">台北市Youbike2.0即時資訊</div>
+      <br>
+
+    </div>
     <div class="body">
       <!-- <select id="area" class="areaA" v-model="nowVal">
           <option value="中正區">中正區</option>
@@ -52,7 +57,7 @@
         <button class="clear btn" v-on:click="clearVal">Clear</button>
       </div>
       <br />
-      <div class="info">
+      <div class="info" v-if="this.start==false">
         <div class="alert" v-if="this.start==false&&filteredStop==''">很抱歉，您目前的搜尋沒有結果</div>
         <div v-for="(data, index) in filteredStop" :key="index" class="container" v-on:click="toMap(data.ar)">
           <div class="stop">{{data.sna.replace("YouBike2.0_", "")}}</div><br>
@@ -65,6 +70,9 @@
         </div>
       </div>
     </div>
+     <div class="footer">
+      Made by Kevin Chang
+    </div>
   </div>
 </template> 
 
@@ -75,7 +83,7 @@ export default {
   name: "app",
   data() {
     return {
-      nowVal: "區域",
+      nowVal: "",
       youbikeData: [],
       start: true,
     };
@@ -115,6 +123,29 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  background-color: #3f4223;
+}
+.header {
+  background-color: #42233f;
+  color: #fff;
+  margin-bottom: 20px;
+  padding-right: 20px;
+  .headerT {
+    font-size: 50px;
+    font-weight: 100;
+    position: relative;
+    display: flex;
+    justify-content: right;
+  }
+  .headerW {
+    font-size: 20px;
+    font-weight: 100;
+    position: relative;
+    display: flex;
+    justify-content: right;
+  }
+}
 .up {
   position: relative;
   display: flex;
@@ -137,14 +168,22 @@ export default {
   display: flex;
   flex-direction:row;
   position: relative;
-  background-color: red;
+  background-color: #42233f;
   padding: 4px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  color: #3f4223;
+  font-weight: bold;
+  .alert {
+    color: #fff;
+    margin-bottom: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+  }
   .container {
     position: relative;
-    background-color: yellow;
+    background-color: #c798c3;
     width: 350px;
     margin: 5px;
     border-radius: 8px;
@@ -152,10 +191,11 @@ export default {
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
     cursor: pointer;
 
     &:hover {
-      bottom: 2px;
+      bottom: 3px;
     }
     .stop {
       margin-top: 10px;
@@ -186,4 +226,13 @@ export default {
     }
   }
 }
+.footer {
+    background-color: #42233f;
+    color: #fff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
+  }
 </style>
