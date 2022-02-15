@@ -70,7 +70,7 @@
         </div>
       </div>
     </div>
-     <div class="footer">
+     <div v-bind:class="[{footer: start},{footer2: !start}]">
       Made by Kevin Chang
     </div>
   </div>
@@ -229,10 +229,19 @@ html {
 .footer {
     background-color: #42233f;
     color: #fff;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 0px;
+    width: 100%;
+  }
+  .footer2 {
+    background-color: #42233f;
+    color: #fff;
     position: relative;
     display: flex;
     justify-content: center;
-    bottom: 0;
+    bottom: -10px;
     width: 100%;
   }
 </style>
