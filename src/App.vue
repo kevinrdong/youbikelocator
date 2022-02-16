@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="headerT">YouBike2.0 Map</div>
+      <div class="headerT" v-on:click="reload">YouBike2.0 Map</div>
       <div class="headerW">台北市Youbike2.0即時資訊</div>
       <br>
 
@@ -70,7 +70,7 @@
         </div>
       </div>
     </div>
-     <div v-bind:class="[{footer: start},{footer2: !start}]">
+     <div class="footer">
       Made by Kevin Chang
     </div>
   </div>
@@ -107,7 +107,10 @@ export default {
     toMap(address) {
       // const arr = this.data.ar
       window.open(`https://www.google.com/maps/?q=${address}`)
-    }
+    },
+    reload() {
+      window.location.reload();
+    },
   },
   computed: {
     filteredStop() {
@@ -137,6 +140,7 @@ html {
     position: relative;
     display: flex;
     justify-content: right;
+    cursor: pointer;
   }
   .headerW {
     font-size: 20px;
@@ -171,6 +175,9 @@ html {
   background-color: #42233f;
   padding: 4px;
   flex-wrap: wrap;
+  max-height: 740px;
+  max-width: 2000px;
+  overflow: scroll;
   justify-content: center;
   align-items: center;
   color: #3f4223;
@@ -229,19 +236,10 @@ html {
 .footer {
     background-color: #42233f;
     color: #fff;
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center;
     bottom: 0px;
-    width: 100%;
-  }
-  .footer2 {
-    background-color: #42233f;
-    color: #fff;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    bottom: -10px;
     width: 100%;
   }
 </style>
