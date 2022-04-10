@@ -24,7 +24,7 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-Usage
+### Usage
 在區域空白欄位選擇欲查詢之區域，或者於後方欄位輸入地址或者道路名，接著按下 Search 鍵查詢。
 
 搜尋結果將顯示在頁面下部。
